@@ -1,0 +1,183 @@
+{
+  "eval_set_id": "evalset1d150c",
+  "name": "evalset1d150c",
+  "description": null,
+  "eval_cases": [
+    {
+      "eval_id": "caseca5450",
+      "conversation": [
+        {
+          "invocation_id": "e-39e846b7-cfa0-42c0-a2a6-3a6c64c7c29e",
+          "user_content": {
+            "parts": [
+              {
+                "video_metadata": null,
+                "thought": null,
+                "inline_data": null,
+                "file_data": null,
+                "thought_signature": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "function_call": null,
+                "function_response": null,
+                "text": "渋谷の天気は？"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "video_metadata": null,
+                "thought": null,
+                "inline_data": null,
+                "file_data": null,
+                "thought_signature": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "function_call": null,
+                "function_response": null,
+                "text": "渋谷の天気情報は入手できません。"
+              }
+            ],
+            "role": null
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              {
+                "id": "adk-98fdb5b5-8f03-4eb2-90bb-eb795b79bc3c",
+                "args": {
+                  "city": "渋谷"
+                },
+                "name": "get_weather"
+              }
+            ],
+            "intermediate_responses": []
+          },
+          "creation_timestamp": 1751952595.220034
+        }
+      ],
+      "session_input": {
+        "app_name": "tutorial0_weather_agent",
+        "user_id": "user",
+        "state": {}
+      },
+      "creation_timestamp": 1751952602.4445271
+    },
+    {
+      "eval_id": "case15e99c",
+      "conversation": [
+        {
+          "invocation_id": "e-eca044c8-1ecf-42a6-9e60-fcbe520f05ec",
+          "user_content": {
+            "parts": [
+              {
+                "video_metadata": null,
+                "thought": null,
+                "inline_data": null,
+                "file_data": null,
+                "thought_signature": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "function_call": null,
+                "function_response": null,
+                "text": "ニューヨークの天気は？"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "video_metadata": null,
+                "thought": null,
+                "inline_data": null,
+                "file_data": null,
+                "thought_signature": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "function_call": null,
+                "function_response": null,
+                "text": "ニューヨークの天気は晴れで、気温は25度です。\n"
+              }
+            ],
+            "role": null
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              {
+                "id": "adk-d364f451-5503-4f34-859c-585475f9afc7",
+                "args": {
+                  "city": "new york"
+                },
+                "name": "get_weather"
+              }
+            ],
+            "intermediate_responses": []
+          },
+          "creation_timestamp": 1751952615.299992
+        }
+      ],
+      "session_input": {
+        "app_name": "tutorial0_weather_agent",
+        "user_id": "user",
+        "state": {}
+      },
+      "creation_timestamp": 1751952621.50135
+    },
+    {
+      "eval_id": "case8f2b91",
+      "conversation": [
+        {
+          "invocation_id": "e-9442e88e-74fc-4103-abd1-b4134928c197",
+          "user_content": {
+            "parts": [
+              {
+                "video_metadata": null,
+                "thought": null,
+                "inline_data": null,
+                "file_data": null,
+                "thought_signature": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "function_call": null,
+                "function_response": null,
+                "text": "今日は暑いね"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "video_metadata": null,
+                "thought": null,
+                "inline_data": null,
+                "file_data": null,
+                "thought_signature": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "function_call": null,
+                "function_response": null,
+                "text": "どの都市の天気を知りたいですか？"
+              }
+            ],
+            "role": null
+          },
+          "intermediate_data": {
+            "tool_uses": [],
+            "intermediate_responses": []
+          },
+          "creation_timestamp": 1751952630.889596
+        }
+      ],
+      "session_input": {
+        "app_name": "tutorial0_weather_agent",
+        "user_id": "user",
+        "state": {}
+      },
+      "creation_timestamp": 1751952635.028081
+    }
+  ],
+  "creation_timestamp": 1751952564.046206
+}
