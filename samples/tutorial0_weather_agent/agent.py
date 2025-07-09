@@ -1,5 +1,6 @@
 from google.adk.agents import Agent
 
+
 def get_weather(city: str) -> dict:
     """都市名から天気を取得する
 
@@ -12,9 +13,7 @@ def get_weather(city: str) -> dict:
     if city.lower() == "new york":
         return {
             "status": "success",
-            "report": (
-                "New Yorkの天気は晴れて、気温は25度です。"
-            ),
+            "report": ("New Yorkの天気は晴れて、気温は25度です。"),
         }
     else:
         return {

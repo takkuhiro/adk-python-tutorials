@@ -1,0 +1,56 @@
+sources:
+  cloud-sql-source:
+    kind: cloud-sql-postgres
+    project: aitech-good-s15112
+    region: us-central1
+    instance: adk-python-tutorials
+    database: postgres
+    user: postgres
+    password: postgresql-password
+
+tools:
+  search-memory:
+    kind: postgres-sql
+    source: cloud-sql-source
+    description: "全てのmemory(記憶)を検索します。"
+    statement: SELECT * FROM memory WHERE deleted = false;
+
+  add-memory:
+    kind: postgres-sql
+    source: cloud-sql-source
+    description: "新しいmemoryを追加します。"
+    parameters:
+      - name: content
+        type: string
+        description: "memoryの内容"
+    statement: INSERT INTO memory(id, content, created_at, updated_at, deleted) VALUES (gen_random_uuid()::text, $1, NOW(), NOW(), false);
+
+  update-memory:
+    kind: postgres-sql
+    source: cloud-sql-source
+    description: "指定されたidのmemoryを更新します。"
+    parameters:
+      - name: id
+        type: string
+        description: "更新するmemoryのid"
+      - name: content
+        type: string
+        description: "更新後のmemoryの内容"
+    statement: UPDATE memory SET content = $2, updated_at = NOW() WHERE id = $1;
+
+  delete-memory:
+    kind: postgres-sql
+    source: cloud-sql-source
+    description: "指定されたidのmemoryを削除します。"
+    parameters:
+      - name: id
+        type: string
+        description: "削除するmemoryのid"
+    statement: UPDATE memory SET deleted = true WHERE id = $1;
+
+toolsets:
+  memory-toolset:
+    - search-memory
+    - add-memory
+    - update-memory
+    - delete-memory

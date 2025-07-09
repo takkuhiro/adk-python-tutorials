@@ -2,11 +2,12 @@
 # cf. https://google.github.io/adk-docs/tools/built-in-tools/#code-execution
 
 import asyncio
-from google.adk.runners import Runner
-from google.adk.sessions import InMemorySessionService
-from google.genai import types
+
 from agent import coding_agent
 from dotenv import load_dotenv
+from google.adk.runners import Runner
+from google.adk.sessions import InMemorySessionService, Session
+from google.genai import types
 
 # NOTE: dotenvを読み込む
 load_dotenv()
@@ -15,7 +16,8 @@ load_dotenv()
 # NOTE: 非同期関数内でcreate_sessionを呼ぶ
 session_service = InMemorySessionService()
 
-async def setup_session_and_runner():
+
+async def setup_session_and_runner() -> tuple[Session, Runner]:
     session = await session_service.create_session(
         app_name="calculator", user_id="user1234", session_id="session_code_exec_async"
     )
@@ -23,13 +25,15 @@ async def setup_session_and_runner():
     return session, runner
 
 
-async def call_agent_async(query):
+async def call_agent_async(query: str) -> None:
     print(f"\n--- Running Query: {query} ---")
     session, runner = await setup_session_and_runner()
     content = types.Content(role="user", parts=[types.Part(text=query)])
     try:
         async for event in runner.run_async(
-            user_id="user1234", session_id="session_code_exec_async", new_message=content
+            user_id="user1234",
+            session_id="session_code_exec_async",
+            new_message=content,
         ):
             # --- Check for specific parts FIRST ---
             has_specific_part = False
@@ -37,14 +41,13 @@ async def call_agent_async(query):
                 for part in event.content.parts:
                     if part.executable_code:
                         # Access the actual code string via .code
-                        print(
-                            f"  Debug: Agent generated code:\n```python\n{part.executable_code.code}\n```"
-                        )
+                        print(f"  Debug: Agent generated code:\n```python\n{part.executable_code.code}\n```")
                         has_specific_part = True
                     elif part.code_execution_result:
                         # Access outcome and output correctly
                         print(
-                            f"  Debug: Code Execution Result: {part.code_execution_result.outcome} - Output:\n{part.code_execution_result.output}"
+                            f"  Debug: Code Execution Result: {part.code_execution_result.outcome} "
+                            f"- Output:\n{part.code_execution_result.output}"
                         )
                         has_specific_part = True
                     # Also print any text parts found in any event for debugging
@@ -57,11 +60,7 @@ async def call_agent_async(query):
             # --- Check for final response AFTER specific parts ---
             # Only consider it final if it doesn't have the specific code parts we just handled
             if not has_specific_part and event.is_final_response():
-                if (
-                    event.content
-                    and event.content.parts
-                    and event.content.parts[0].text
-                ):
+                if event.content and event.content.parts and event.content.parts[0].text:
                     final_response_text = event.content.parts[0].text.strip()
                     print(f"==> Final Agent Response: {final_response_text}")
                 else:
@@ -73,12 +72,12 @@ async def call_agent_async(query):
 
 
 # Main async function to run the examples
-async def main():
+async def main() -> None:
     await call_agent_async("5 + 7 * 3を計算してください")
     await call_agent_async("10の階乗を計算してください")
 
 
-async def dialog():
+async def dialog() -> None:
     while True:
         query = input("Enter your query: ")
         if query.lower() == "exit":

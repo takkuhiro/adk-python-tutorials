@@ -8,4 +8,52 @@ dependencies = [
     "google-adk[eval]>=1.5.0",
     "langchain-community>=0.3.27",
     "langchain>=0.3.26",
+    "toolbox-core>=0.3.0",
 ]
+
+[tool.setuptools]
+packages = ["samples"]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.16.1",
+    "ruff>=0.12.2",
+]
+
+
+[tool.mypy]
+ignore_missing_imports = true
+disallow_untyped_defs = true
+exclude = ["samples/wip"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 127
+indent-width = 4
+exclude = [
+    "*/__init__.py",
+    ".git",
+    ".mypy_cache",
+    ".ruff_cache",
+    ".venv/*",
+    "local/*",
+    "*/prompt.py",
+    "*/wip",
+]
+
+[tool.ruff.lint]
+ignore = ["B008"]
+select = [
+    "B",
+    "E",
+    "F",
+    "I",
+    "UP",
+    "W",
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.pylint]
+max-args = 10

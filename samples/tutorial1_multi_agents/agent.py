@@ -1,6 +1,6 @@
 from google.adk.agents import Agent
-from .sub_agents import analytics_agent, summary_agent
 
+from .sub_agents import analytics_agent, summary_agent
 
 root_agent = Agent(
     name="personal_assistant",

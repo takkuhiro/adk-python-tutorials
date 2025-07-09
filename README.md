@@ -10,23 +10,23 @@ ADK（Agent Development Kit）は、Googleが開発したオープンソース�
 
 このリポジトリには以下の5つのチュートリアルが含まれています：
 
-1. **Weather Agent** (`samples/tutorial0_weather_agent/`)
+0. **Weather Agent** (`samples/tutorial0_weather_agent/`)
    - 基本的なエージェントの作成方法を学びます
    - 天気情報を取得・解析するシンプルなエージェントの実装例
 
-2. **Multi Agents** (`samples/tutorial1_multi_agents/`)
+1. **Multi Agents** (`samples/tutorial1_multi_agents/`)
    - 複数のエージェントを連携させる方法を学びます
    - メインエージェントと分析・要約を行うサブエージェントの連携例
 
-3. **Agent Tool** (`samples/tutorial2_agent_tool/`)
+2. **Agent Tool** (`samples/tutorial2_agent_tool/`)
    - エージェントにツールを実装する方法を学びます
    - カスタムツールの作成と統合方法の解説
 
-4. **Code Executor** (`samples/tutorial3_code_executor/`)
+3. **Code Executor** (`samples/tutorial3_code_executor/`)
    - エージェントにコード実行機能を追加する方法を学びます
    - プログラムの動的実行とその結果の処理方法
 
-5. **Third Party Tool** (`samples/tutorial4_third_party_tool/`)
+4. **Third Party Tool** (`samples/tutorial4_third_party_tool/`)
    - サードパーティツールの統合方法を学びます
    - 外部ツールやAPIとの連携例
 
@@ -48,6 +48,11 @@ cd adk-python-tutorials
 ```bash
 uv pip install -e .
 ```
+
+## 対応していない範囲
+- Apigeeを用いたツール: https://google.github.io/adk-docs/tools/google-cloud-tools/#apigee-api-hub-tools
+- Application Integrationを用いたツール: https://google.github.io/adk-docs/tools/google-cloud-tools/#application-integration-tools
+
 
 ## 使用方法
 

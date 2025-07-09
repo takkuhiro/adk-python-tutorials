@@ -1,5 +1,6 @@
 from google.adk.agents import Agent
-from .sub_agents import strict_advice_agent, commend_agent
+
+from .sub_agents import commend_agent, strict_advice_agent
 
 analytics_agent = Agent(
     name="analytics_agent",
