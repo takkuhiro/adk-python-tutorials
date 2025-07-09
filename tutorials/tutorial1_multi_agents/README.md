@@ -14,7 +14,7 @@
 source .venv/bin/activate
 
 # 実行
-cd samples
+cd tutorials
 adk web
 
 # 画面からtutorial1_multi_agentsを選択する

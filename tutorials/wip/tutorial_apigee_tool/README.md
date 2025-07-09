@@ -18,6 +18,6 @@ cd (root)
 cp .env.template .env
 # .envを自分で用意した値に設定する
 source .env
-cd samples/tutorial5_apigee_tool
+cd tutorials/tutorial5_apigee_tool
 python main.py
 ```

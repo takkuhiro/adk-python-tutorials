@@ -10,7 +10,7 @@
 source .venv/bin/activate
 
 # 実行
-cd samples
+cd tutorials
 adk web
 
 # 画面からtutorial0_weather_agentを選択する

@@ -1,6 +1,6 @@
-# tutorial4_third_party_tool
+# tutorial3_code_executor
 
-サードパーティで提供されているツールを使うエージェントです
+コード実行を行うエージェントです
 
 ### 実行方法
 ```
@@ -12,6 +12,6 @@ cd (root)
 cp .env.template .env
 # .envを自分で用意した値に設定する
 source .env
-cd samples/tutorial4_third_party_tool
+cd tutorials/tutorial3_code_executor
 python main.py
 ```
