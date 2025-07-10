@@ -14,3 +14,6 @@ wheels/
 
 # Local
 local
+
+# ADK
+.adk

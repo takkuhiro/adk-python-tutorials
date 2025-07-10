@@ -1,0 +1,305 @@
+{
+  "eval_set_id": "evalset7cba40",
+  "name": "evalset7cba40",
+  "description": null,
+  "eval_cases": [
+    {
+      "eval_id": "case47a35f",
+      "conversation": [
+        {
+          "invocation_id": "e-b3be2ba8-1277-4dde-af2b-ed1b6ae61993",
+          "user_content": {
+            "parts": [
+              {
+                "video_metadata": null,
+                "thought": null,
+                "inline_data": null,
+                "file_data": null,
+                "thought_signature": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "function_call": null,
+                "function_response": null,
+                "text": "ニューヨークの天気は？"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "video_metadata": null,
+                "thought": null,
+                "inline_data": null,
+                "file_data": null,
+                "thought_signature": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "function_call": null,
+                "function_response": null,
+                "text": "ニューヨークの天気は晴れで、気温は25度です。\n"
+              }
+            ],
+            "role": null
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              {
+                "id": "adk-1394977b-10c2-4ce4-9063-1edddd7714ec",
+                "args": {
+                  "city": "new york"
+                },
+                "name": "get_weather"
+              }
+            ],
+            "intermediate_responses": []
+          },
+          "creation_timestamp": 1752134708.335001
+        }
+      ],
+      "session_input": {
+        "app_name": "tutorial8_evaluate",
+        "user_id": "user",
+        "state": {}
+      },
+      "creation_timestamp": 1752134722.932124
+    },
+    {
+      "eval_id": "casee0a273",
+      "conversation": [
+        {
+          "invocation_id": "e-523bda24-2c93-44d4-a632-d502e4845c03",
+          "user_content": {
+            "parts": [
+              {
+                "video_metadata": null,
+                "thought": null,
+                "inline_data": null,
+                "file_data": null,
+                "thought_signature": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "function_call": null,
+                "function_response": null,
+                "text": "渋谷の天気は？"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "video_metadata": null,
+                "thought": null,
+                "inline_data": null,
+                "file_data": null,
+                "thought_signature": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "function_call": null,
+                "function_response": null,
+                "text": "渋谷の天気情報は入手できません。"
+              }
+            ],
+            "role": null
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              {
+                "id": "adk-25d9e99d-d6cd-45db-a369-966f84da412a",
+                "args": {
+                  "city": "渋谷"
+                },
+                "name": "get_weather"
+              }
+            ],
+            "intermediate_responses": []
+          },
+          "creation_timestamp": 1752134735.858142
+        }
+      ],
+      "session_input": {
+        "app_name": "tutorial8_evaluate",
+        "user_id": "user",
+        "state": {}
+      },
+      "creation_timestamp": 1752134740.9201422
+    },
+    {
+      "eval_id": "case05fb1a",
+      "conversation": [
+        {
+          "invocation_id": "e-9ddacc3b-c16f-4c0f-9318-03350cdf78ed",
+          "user_content": {
+            "parts": [
+              {
+                "video_metadata": null,
+                "thought": null,
+                "inline_data": null,
+                "file_data": null,
+                "thought_signature": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "function_call": null,
+                "function_response": null,
+                "text": "北海道の天気は？"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "video_metadata": null,
+                "thought": null,
+                "inline_data": null,
+                "file_data": null,
+                "thought_signature": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "function_call": null,
+                "function_response": null,
+                "text": "北海道は都市ではありません。どの都市の天気が知りたいですか？"
+              }
+            ],
+            "role": null
+          },
+          "intermediate_data": {
+            "tool_uses": [],
+            "intermediate_responses": []
+          },
+          "creation_timestamp": 1752134752.464536
+        }
+      ],
+      "session_input": {
+        "app_name": "tutorial8_evaluate",
+        "user_id": "user",
+        "state": {}
+      },
+      "creation_timestamp": 1752134757.526196
+    },
+    {
+      "eval_id": "case9292e5",
+      "conversation": [
+        {
+          "invocation_id": "e-3df53d3a-5789-4f29-8a38-c1b93e7fb6c5",
+          "user_content": {
+            "parts": [
+              {
+                "video_metadata": null,
+                "thought": null,
+                "inline_data": null,
+                "file_data": null,
+                "thought_signature": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "function_call": null,
+                "function_response": null,
+                "text": "ニューヨークの天気は？"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "video_metadata": null,
+                "thought": null,
+                "inline_data": null,
+                "file_data": null,
+                "thought_signature": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "function_call": null,
+                "function_response": null,
+                "text": "ニューヨークの天気は晴れで、気温は25度です。\nまじで最高ですよね>＜\n"
+              }
+            ],
+            "role": null
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              {
+                "id": "adk-d3290458-e1fa-459f-9d65-42c7b683a856",
+                "args": {
+                  "city": "new york"
+                },
+                "name": "get_weather"
+              }
+            ],
+            "intermediate_responses": []
+          },
+          "creation_timestamp": 1752134844.592663
+        }
+      ],
+      "session_input": {
+        "app_name": "tutorial8_evaluate",
+        "user_id": "user",
+        "state": {}
+      },
+      "creation_timestamp": 1752134904.588421
+    },
+    {
+      "eval_id": "casef415f4",
+      "conversation": [
+        {
+          "invocation_id": "e-4fd85248-c011-491e-889f-c038781756a3",
+          "user_content": {
+            "parts": [
+              {
+                "video_metadata": null,
+                "thought": null,
+                "inline_data": null,
+                "file_data": null,
+                "thought_signature": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "function_call": null,
+                "function_response": null,
+                "text": "ニューヨークの天気は？"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "video_metadata": null,
+                "thought": null,
+                "inline_data": null,
+                "file_data": null,
+                "thought_signature": null,
+                "code_execution_result": null,
+                "executable_code": null,
+                "function_call": null,
+                "function_response": null,
+                "text": "ニューヨークの天気は晴れで、気温は25度です。\n"
+              }
+            ],
+            "role": null
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              {
+                "id": "adk-33f2ee31-8d02-4b0a-981c-d318f646d49d",
+                "args": {
+                  "city": "new york"
+                },
+                "name": "get_weather"
+              }
+            ],
+            "intermediate_responses": []
+          },
+          "creation_timestamp": 1752137862.602912
+        }
+      ],
+      "session_input": {
+        "app_name": "tutorial8_evaluate",
+        "user_id": "user",
+        "state": {}
+      },
+      "creation_timestamp": 1752137867.44369
+    }
+  ],
+  "creation_timestamp": 1752134719.2531788
+}
