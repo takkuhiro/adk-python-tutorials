@@ -1,4 +1,4 @@
-# ADK Python チュートリアル
+# ADK Python 実践チュートリアル
 
 このリポジトリは、Google製のAgent Development Kit (ADK)のPythonバージョンのチュートリアル集です。
 
@@ -12,7 +12,7 @@ ADK（Agent Development Kit）は、Googleが開発したオープンソース�
 
 ## よくある間違い集
 
-よくある間違いやアンチパターン、ADKのバグなどは`PROBLEMS.md`に記載しています
+よくある間違いやアンチパターン、ADKのバグなどは [PROBLEMS.md](/PROBLEMS.md) に記載しています
 
 実装上詰まったことがあれば、まずはこちらのドキュメントをご確認ください
 
