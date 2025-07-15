@@ -1,34 +1,77 @@
 # ADK Python チュートリアル
 
-このリポジトリは、Google製のAgent Development Kit (ADK)のPythonバージョンのチュートリアル集です。ADKを使用してインテリジェントなエージェントを開発する方法を段階的に学ぶことができます。
+このリポジトリは、Google製のAgent Development Kit (ADK)のPythonバージョンのチュートリアル集です。
 
-## 概要
+ADKを使用してインテリジェントなエージェントを開発する方法を段階的に学ぶことができます。
 
-ADK（Agent Development Kit）は、Googleが開発したオープンソースのエージェント開発フレームワークです。このフレームワークを使用することで、タスク指向の自律的なAIエージェントを効率的に開発することができます。
+## ADKとは
+
+ADK（Agent Development Kit）は、Googleが開発したオープンソースのエージェント開発フレームワークです。
+
+このフレームワークを使用することで、タスク指向の自律的なAIエージェントを効率的に開発することができます。
+
+## よくある間違い集
+
+よくある間違いやアンチパターン、ADKのバグなどは`PROBLEMS.md`に記載しています
+
+実装上詰まったことがあれば、まずはこちらのドキュメントをご確認ください
+
 
 ## チュートリアル構成
 
-このリポジトリには以下の5つのチュートリアルが含まれています：
+このリポジトリには以下のチュートリアルが含まれています：
 
-0. **Weather Agent** (`tutorials/tutorial0_weather_agent/`)
-   - 基本的なエージェントの作成方法を学びます
-   - 天気情報を取得・解析するシンプルなエージェントの実装例
+1. **Simple Agent** (`tutorials/t00_simple_agent`)
+   - 最もシンプルなエージェントの実装例です。
+   - 都市名を入力すると、その都市の天気を回答するシンプルな機能を持つエージェントを実装します。
 
-1. **Multi Agents** (`tutorials/tutorial1_multi_agents/`)
-   - 複数のエージェントを連携させる方法を学びます
-   - メインエージェントと分析・要約を行うサブエージェントの連携例
+2. **Multi Agents** (`tutorials/t01_multi_agents`)
+   - 複数のエージェントを組み合わせたシステムの実装例です。
+   - メインエージェントの下に要約エージェントと目標分析エージェントを配置し、さらに目標分析エージェントの下に褒めるエージェントと厳しいアドバイスをくれるエージェントを配置した階層構造を実装します。
 
-2. **Agent Tool** (`tutorials/tutorial2_agent_tool/`)
-   - エージェントにツールを実装する方法を学びます
-   - カスタムツールの作成と統合方法の解説
+3. **Agent Tool** (`tutorials/t02_agent_tool`)
+   - Tool Callingの実装方法を学ぶためのサンプルです。
+   - Google検索ツールと短編小説を書くツールを実装し、エージェントがツールを呼び出して機能を拡張する方法を学びます。
 
-3. **Code Executor** (`tutorials/tutorial3_code_executor/`)
-   - エージェントにコード実行機能を追加する方法を学びます
-   - プログラムの動的実行とその結果の処理方法
+4. **Code Executor** (`tutorials/t03_code_executor`)
+   - コード実行機能を持つエージェントの実装例です。
+   - エージェントがプログラムコードを実行する方法を実装します。
 
-4. **Third Party Tool** (`tutorials/tutorial4_third_party_tool/`)
-   - サードパーティツールの統合方法を学びます
-   - 外部ツールやAPIとの連携例
+5. **Third Party Tool** (`tutorials/t04_third_party_tool`)
+   - サードパーティが提供しているツールを利用するエージェントの実装例です。
+   - 外部ツールとの連携方法を実装します。
+
+6. **Cloud SQL Tool** (`tutorials/t05_cloud_sql_tool`)
+   - Google CloudのCloud SQLと連携するエージェントの実装例です。
+   - Toolboxを使用してCloud SQLに接続し、データベース操作を行う方法を実装します。
+
+7. **MCP Tool** (`tutorials/t06_mcp_tool`)
+   - MCPサーバー（ファイルシステム）と連携するエージェントの実装例です。
+   - ファイルシステムへのアクセスと操作方法を実装します。
+
+8. **State** (`tutorials/t07_state`)
+   - ADKのSession & Memory機能の使用方法を学ぶためのチュートリアルです。
+   - エージェントの状態管理、セッション管理、メモリ機能の活用方法を実装します。
+
+9. **Deploy** (`tutorials/t08_deploy`)
+   - ADKで作成したエージェントのデプロイ方法を学ぶためのチュートリアルです。
+   - Agent Engine、Cloud Run、GKEへのデプロイ方法を実装します。
+
+10. **Execution** (`tutorials/t09_execution`)
+    - エージェントの実行方法の違いを学ぶためのチュートリアルです。
+    - Web UI、Runner、AdkAppなど、異なる実行方法の特徴と使い分けを実装します。
+
+11. **Callback** (`tutorials/t10_callback`)
+    - ADKのCallback機能の使用方法を学ぶためのチュートリアルです。
+    - エージェントの実行前後での処理の追加、入出力の編集、ガードレールの実装方法を学びます。
+
+12. **Evaluate** (`tutorials/t11_evaluate`)
+    - ADKの評価機能を学ぶためのチュートリアルです。
+    - Tool Callingの正確性評価やレスポンスの一致度評価（ROUGE）の方法を実装します。
+
+13. **Artifacts** (`tutorials/t12_artifacts`)
+    - ADKのArtifacts機能の使用方法を学ぶためのチュートリアルです。
+    - バイナリデータ（画像、ファイル、音声など）の管理とLLMでの利用方法を実装します。
 
 ## 環境設定
 
@@ -49,11 +92,6 @@ cd adk-python-tutorials
 uv pip install -e .
 ```
 
-## 対応していない範囲
-- Apigeeを用いたツール: https://google.github.io/adk-docs/tools/google-cloud-tools/#apigee-api-hub-tools
-- Application Integrationを用いたツール: https://google.github.io/adk-docs/tools/google-cloud-tools/#application-integration-tools
-
-
 ## 使用方法
 
 各チュートリアルディレクトリには個別のREADMEファイルが用意されています。チュートリアルを順番に進めることで、ADKの機能を段階的に学ぶことができます。
@@ -61,3 +99,8 @@ uv pip install -e .
 ## 参考リンク
 
 - [Agent Development Kit 公式ドキュメント](https://google.github.io/adk-docs/)
+
+## 未対応範囲
+
+- Apigeeを用いたツール: https://google.github.io/adk-docs/tools/google-cloud-tools/#apigee-api-hub-tools
+- Application Integrationを用いたツール: https://google.github.io/adk-docs/tools/google-cloud-tools/#application-integration-tools

@@ -14,3 +14,9 @@ wheels/
 
 # Local
 local
+
+# ADK
+.adk
+
+# unused files
+tutorials/base
