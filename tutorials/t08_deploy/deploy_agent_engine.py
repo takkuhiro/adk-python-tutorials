@@ -2,10 +2,9 @@ import os
 
 import vertexai
 from dotenv import load_dotenv
+from myagent.agent import root_agent
 from vertexai import agent_engines
 from vertexai.preview.reasoning_engines import AdkApp
-
-from myagent.agent import root_agent
 
 load_dotenv()
 

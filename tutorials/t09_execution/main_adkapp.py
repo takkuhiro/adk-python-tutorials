@@ -1,11 +1,6 @@
-import os
-
-import vertexai
-from dotenv import load_dotenv
-from vertexai import agent_engines
-from vertexai.preview import reasoning_engines
-from vertexai.preview.reasoning_engines import AdkApp
 from agent import root_agent
+from dotenv import load_dotenv
+from vertexai.preview import reasoning_engines
 
 load_dotenv()
 

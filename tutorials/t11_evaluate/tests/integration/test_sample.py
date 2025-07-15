@@ -1,5 +1,6 @@
-from google.adk.evaluation.agent_evaluator import AgentEvaluator
 import pytest
+from google.adk.evaluation.agent_evaluator import AgentEvaluator
+
 
 @pytest.mark.asyncio
 async def test_with_single_test_file():

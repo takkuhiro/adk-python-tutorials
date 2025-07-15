@@ -1,14 +1,15 @@
 import asyncio
 
 from agent import root_agent  # NOTE: python main.py の場合はこっち
+
 # from .agent import root_agent # NOTE: adk webの場合はこっち
 from dotenv import load_dotenv
 from google.adk.runners import Runner
 from google.adk.sessions import InMemorySessionService, Session
 from google.genai import types
 
-
 load_dotenv()
+
 
 async def setup_session_and_runner() -> tuple[Session, Runner]:
     session_service = InMemorySessionService()

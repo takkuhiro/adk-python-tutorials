@@ -1,32 +1,25 @@
-from google.adk.agents import LlmAgent
 import asyncio
-from google.adk.sessions import InMemorySessionService, Session
+
+from google.adk.agents import LlmAgent
 from google.adk.runners import Runner
+from google.adk.sessions import InMemorySessionService
 from google.genai.types import Content, Part
 
 agent = LlmAgent(
     name="Greeter",
     model="gemini-2.0-flash",
     instruction="あなたは、パーソナルアシスタントです。",
-    output_key="last_response" # NOTE: これにより、セッションの状態にlast_responseが保存される
+    output_key="last_response",  # NOTE: これにより、セッションの状態にlast_responseが保存される
 )
 
 
 async def main():
     app_name, user_id, session_id = "state_app", "user1", "session1"
     session_service = InMemorySessionService()
-    runner = Runner(
-        agent=agent,
-        app_name=app_name,
-        session_service=session_service
-    )
+    runner = Runner(agent=agent, app_name=app_name, session_service=session_service)
 
-    session = await session_service.create_session(
-        app_name=app_name,
-        user_id=user_id,
-        session_id=session_id
-    )
-    print(f"初期状態: {session.state}") # Output: {}
+    session = await session_service.create_session(app_name=app_name, user_id=user_id, session_id=session_id)
+    print(f"初期状態: {session.state}")  # Output: {}
 
     # Runnerは、append_eventを呼び出し、output_keyで指定したキーを使用してstateを更新します。
     query = "こんにちは"
@@ -37,7 +30,8 @@ async def main():
             print(f"エージェント応答: {event.content.parts[0].text}")
 
     updated_session = await session_service.get_session(app_name=app_name, user_id=user_id, session_id=session_id)
-    print(f"エージェント実行後の状態: {updated_session.state}") # Output: {'last_response': 'xxx'}
+    print(f"エージェント実行後の状態: {updated_session.state}")  # Output: {'last_response': 'xxx'}
+
 
 if __name__ == "__main__":
     asyncio.run(main())

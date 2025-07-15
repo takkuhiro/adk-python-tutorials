@@ -4,7 +4,6 @@ import vertexai
 from dotenv import load_dotenv
 from vertexai import agent_engines
 
-
 load_dotenv()
 
 vertexai.init(
@@ -15,6 +14,7 @@ vertexai.init(
 
 # TODO: デプロイ時に出力されたIDに変更する
 AGENT_ENGINE_ID = "REPLACE_YOUR_AGENT_ID: e.g. projects/xxx/locations/us-central1/reasoningEngines/xxx"
+
 
 def list_session_ids() -> None:
     remote_app = agent_engines.get(AGENT_ENGINE_ID)
@@ -29,15 +29,15 @@ def list_session_ids() -> None:
 
 
 def chat() -> None:
-    print(f"1. Getting agent...")
+    print("1. Getting agent...")
     remote_app = agent_engines.get(AGENT_ENGINE_ID)
 
-    print(f"2. Getting session...")
+    print("2. Getting session...")
     remote_session = remote_app.create_session(user_id="user_id")
 
     session_id = remote_session["id"]
 
-    print(f"3. Chatting...")
+    print("3. Chatting...")
     while True:
         message = input("User input (Exit: break) > ")
 

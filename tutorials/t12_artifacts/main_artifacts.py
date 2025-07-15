@@ -1,21 +1,23 @@
-from google.adk.runners import Runner
-from google.adk.agents import Agent
-from google.adk.artifacts import InMemoryArtifactService # Or GcsArtifactService
-from google.adk.sessions import InMemorySessionService
-import google.genai.types as types
-from google.adk.models import LlmRequest
-from google.adk.agents.callback_context import CallbackContext # Or ToolContext
 import asyncio
 
+import google.genai.types as types
+from google.adk.agents import Agent
+from google.adk.agents.callback_context import CallbackContext  # Or ToolContext
+from google.adk.artifacts import InMemoryArtifactService  # Or GcsArtifactService
+from google.adk.models import LlmRequest
+from google.adk.runners import Runner
+from google.adk.sessions import InMemorySessionService
 
-async def save_and_load_image(callback_context: CallbackContext, llm_request: LlmRequest):
+
+async def save_and_load_image(callback_context: CallbackContext, llm_request: LlmRequest) -> None:
     last_user_message = ""
-    if llm_request.contents and llm_request.contents[-1].role == 'user':
+    if llm_request.contents and llm_request.contents[-1].role == "user":
         if llm_request.contents[-1].parts:
             last_user_message = llm_request.contents[-1].parts[0].text
     print(f"[Callback] Agentに入力されるメッセージ: {last_user_message}")
 
     # 画像を保存
+    image_bytes = llm_request.contents[-1].parts[1].inline_data.data
     image_artifact = types.Part(inline_data=types.Blob(mime_type="image/jpeg", data=image_bytes))
     filename = "image.jpeg"
 
@@ -44,22 +46,25 @@ async def save_and_load_image(callback_context: CallbackContext, llm_request: Ll
         print(f"An unexpected error occurred during Python artifact load: {e}")
 
     # 入力に渡す
-    new_content = types.Content(role="user", parts=[
-        types.Part(text=last_user_message),
-        types.Part(inline_data=types.Blob(mime_type="image/jpeg", data=image_bytes)),
-    ])
+    new_content = types.Content(
+        role="user",
+        parts=[
+            types.Part(text=last_user_message),
+            types.Part(inline_data=types.Blob(mime_type="image/jpeg", data=image_bytes)),
+        ],
+    )
     llm_request.contents.append(new_content)
 
     return None
 
 
-async def main():
+async def main() -> None:
     root_agent = Agent(
         name="personal_assistant",
         model="gemini-2.0-flash",
         description="パーソナルアシスタントです。",
         instruction="あなたは、パーソナルアシスタントです。",
-        before_model_callback=save_and_load_image, # NOTE: before_agent_callbackではなく、before_model_callbackを使用する
+        before_model_callback=save_and_load_image,  # NOTE: before_agent_callbackではなく、before_model_callbackを使用する
     )
 
     artifact_service = InMemoryArtifactService()
@@ -83,10 +88,13 @@ async def main():
 
     _ = await session_service.create_session(app_name=app_name, user_id=user_id, session_id=session_id)
 
-    content = types.Content(role="user", parts=[
-        types.Part(text=query),
-        types.Part(inline_data=types.Blob(mime_type="image/jpeg", data=image_bytes)),
-    ])
+    content = types.Content(
+        role="user",
+        parts=[
+            types.Part(text=query),
+            types.Part(inline_data=types.Blob(mime_type="image/jpeg", data=image_bytes)),
+        ],
+    )
     final_response_text = ""
     async for event in runner.run_async(user_id=user_id, session_id=session_id, new_message=content):
         if event.is_final_response():

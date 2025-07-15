@@ -1,16 +1,17 @@
+import asyncio
+
+from dotenv import load_dotenv
 from google.adk.agents import Agent
 from google.adk.agents.callback_context import CallbackContext
+from google.adk.artifacts import InMemoryArtifactService
 from google.adk.runners import Runner
 from google.adk.sessions import InMemorySessionService
-from google.adk.artifacts import InMemoryArtifactService
 from google.genai import types
-from typing import Optional
-from dotenv import load_dotenv
-import asyncio
 
 load_dotenv()
 
-def check_if_agent_should_run(callback_context: CallbackContext) -> Optional[types.Content]:
+
+def check_if_agent_should_run(callback_context: CallbackContext) -> types.Content | None:
     """
     このコールバック関数は、LLMエージェントの実行を制御するためのものです。
     エージェントの実行をスキップするかどうかを決定するために、セッションの状態をチェックします。
@@ -29,21 +30,22 @@ def check_if_agent_should_run(callback_context: CallbackContext) -> Optional[typ
         # エージェントの実行をスキップするために、Contentを返します。
         print(f"[Callback] エージェントの実行をスキップします: {agent_name}")
         return types.Content(
-            parts=[types.Part(text=f"(Agent {agent_name} は、before_agent_callbackによってskippedされました)")],
-            role="model"
+            parts=[types.Part(text=f"(Agent {agent_name} は、before_agent_callbackによってskippedされました)")], role="model"
         )
     else:
         # エージェントの本来の実行を許可するために、Noneを返します
         print(f"[Callback] エージェントの実行を許可します: {agent_name}")
         return None
 
+
 root_agent = Agent(
     name="personal_assistant",
     model="gemini-2.0-flash",
     description="パーソナルアシスタントです。",
     instruction="あなたは、パーソナルアシスタントです。",
-    before_agent_callback=check_if_agent_should_run # Callbackを設定します
+    before_agent_callback=check_if_agent_should_run,  # Callbackを設定します
 )
+
 
 async def main():
     app_name = "before_agent_demo"
@@ -53,18 +55,13 @@ async def main():
 
     session_service = InMemorySessionService()
     artifact_service = InMemoryArtifactService()
-    runner = Runner(
-        agent=root_agent,
-        app_name=app_name,
-        session_service=session_service,
-        artifact_service=artifact_service
-    )
+    runner = Runner(agent=root_agent, app_name=app_name, session_service=session_service, artifact_service=artifact_service)
 
     # 比較するために、stateを持った場合と持たなかった場合のsessionを作成する
     await session_service.create_session(
         app_name=app_name,
         user_id=user_id,
-        session_id=session_id_run
+        session_id=session_id_run,
         # stateはデフォルトのNoneなので call_back checkの中で'skip_llm_agent'はfalseになる
     )
 
@@ -72,34 +69,33 @@ async def main():
         app_name=app_name,
         user_id=user_id,
         session_id=session_id_skip,
-        state={"skip_llm_agent": True} # call_back checkの中で'skip_llm_agent'はtrueになる
+        state={"skip_llm_agent": True},  # call_back checkの中で'skip_llm_agent'はtrueになる
     )
 
     # session_serviceのlistを表示する
     print(await session_service.list_sessions(app_name=app_name, user_id=user_id))
 
-    print("\n" + "="*20 + f" シナリオ 1: Running Agent on Session '{session_id_run}' (エージェントが実行される) " + "="*20)
+    print("\n" + "=" * 20 + f" シナリオ 1: Running Agent on Session '{session_id_run}' (エージェントが実行される) " + "=" * 20)
     query = "好きな食べ物は？"
     async for event in runner.run_async(
-        user_id=user_id,
-        session_id=session_id_run,
-        new_message=types.Content(role="user", parts=[types.Part(text=query)])
+        user_id=user_id, session_id=session_id_run, new_message=types.Content(role="user", parts=[types.Part(text=query)])
     ):
         if event.is_final_response() and event.content:
             print(f"Final Output: [{event.author}] {event.content.parts[0].text.strip()}")
         elif event.is_error():
             print(f"Error Event: {event.error_details}")
 
-    print("\n" + "="*20 + f" シナリオ 2: Running Agent on Session '{session_id_skip}' (エージェントが実行されない) " + "="*20)
+    print(
+        "\n" + "=" * 20 + f" シナリオ 2: Running Agent on Session '{session_id_skip}' (エージェントが実行されない) " + "=" * 20
+    )
     async for event in runner.run_async(
-        user_id=user_id,
-        session_id=session_id_skip,
-        new_message=types.Content(role="user", parts=[types.Part(text=query)])
+        user_id=user_id, session_id=session_id_skip, new_message=types.Content(role="user", parts=[types.Part(text=query)])
     ):
         if event.is_final_response() and event.content:
             print(f"Final Output: [{event.author}] {event.content.parts[0].text.strip()}")
         elif event.is_error():
             print(f"Error Event: {event.error_details}")
+
 
 if __name__ == "__main__":
     asyncio.run(main())

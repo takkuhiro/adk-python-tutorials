@@ -5,12 +5,6 @@ resolution-markers = [
     "python_full_version >= '3.13'",
 ]
 
-[manifest]
-members = [
-    "adk-python-sample",
-    "tutorial-memory",
-]
-
 [[package]]
 name = "absl-py"
 version = "2.3.1"
@@ -2677,17 +2671,6 @@ sdist = { url = "https://files.pythonhosted.org/packages/01/c1/68d582b4d3a1c1f81
 wheels = [
     { url = "https://files.pythonhosted.org/packages/69/8e/3f6dfda475ecd940e786defe6df6c500734e686c9cd0a0f8ef6821e9b2f2/trio-0.30.0-py3-none-any.whl", hash = "sha256:3bf4f06b8decf8d3cf00af85f40a89824669e2d033bb32469d34840edcfc22a5", size = 499194 },
 ]
-
-[[package]]
-name = "tutorial-memory"
-version = "0.1.0"
-source = { virtual = "tutorials/tutorial_memory" }
-dependencies = [
-    { name = "google-adk" },
-]
-
-[package.metadata]
-requires-dist = [{ name = "google-adk", specifier = ">=1.6.1" }]
 
 [[package]]
 name = "twisted"
