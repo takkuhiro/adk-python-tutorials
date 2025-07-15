@@ -64,3 +64,6 @@ convention = "google"
 
 [tool.ruff.lint.pylint]
 max-args = 10
+
+[tool.uv.workspace]
+members = ["tutorials/tutorial_memory"]
