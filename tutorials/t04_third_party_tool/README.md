@@ -3,6 +3,8 @@
 ## 概要
 サードパーティが提供しているツールを利用するエージェントの実装例です。外部ツールとの連携方法を実装します。
 
+cf. 公式ドキュメント: [Third party tools](https://google.github.io/adk-docs/tools/third-party-tools/)
+
 ## 学習内容
 - `LangchainTool`を使用したLangChainツールの統合（Tavily検索）
 - サードパーティツールをADKエージェントで使用する方法

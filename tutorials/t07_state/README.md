@@ -3,6 +3,8 @@
 ## 概要
 ADKのSession & Memory機能の使用方法を学ぶためのチュートリアルです。エージェントの状態管理、セッション管理、メモリ機能の活用方法を実装します。
 
+cf. 公式ドキュメント: [Session&Memory](https://google.github.io/adk-docs/sessions/)
+
 ## 学習内容
 - `InMemorySessionService`を使用したセッション管理
 - `output_key`パラメータによるエージェント応答の状態保存

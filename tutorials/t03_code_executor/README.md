@@ -3,6 +3,8 @@
 ## 概要
 コード実行機能を持つエージェントの実装例です。エージェントがプログラムコードを実行する方法を実装します。
 
+cf. 公式ドキュメント: [Built-in Tools](https://google.github.io/adk-docs/tools/built-in-tools/)
+
 ## 学習内容
 - `BuiltInCodeExecutor`を使用したコード実行機能の実装
 - `code_executor`パラメータによるエージェントへのコード実行機能の追加

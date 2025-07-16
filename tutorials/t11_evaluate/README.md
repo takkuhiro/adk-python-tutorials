@@ -3,6 +3,8 @@
 ## 概要
 ADKの評価機能を学ぶためのチュートリアルです。Tool Callingの正確性評価やレスポンスの一致度評価（ROUGE）の方法を実装します。
 
+cf. 公式ドキュメント: [Evaluate](https://google.github.io/adk-docs/evaluate/)
+
 ## 学習内容
 - `adk eval`コマンドによる評価の実行
 - Trajectory評価（Tool Callingの正確性）

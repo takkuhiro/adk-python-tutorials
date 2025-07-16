@@ -4,6 +4,8 @@ Google CloudのCloud SQLと連携するエージェントの実装例です。
 
 [Toolbox](https://googleapis.github.io/genai-toolbox/getting-started/introduction/) を使用してCloud SQLに接続し、データベース操作を行う方法を実装します。
 
+cf. 公式ドキュメント: [Google Cloud tools](https://google.github.io/adk-docs/tools/google-cloud-tools/)
+
 ### 注意事項
 
 現時点(2025/07/09)では、このAgentをGoogle Cloud上のAgent Engineにデプロイすることはできませんでした。
