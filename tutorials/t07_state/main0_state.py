@@ -13,7 +13,7 @@ agent = LlmAgent(
 )
 
 
-async def main():
+async def main() -> None:
     app_name, user_id, session_id = "state_app", "user1", "session1"
     session_service = InMemorySessionService()
     runner = Runner(agent=agent, app_name=app_name, session_service=session_service)
@@ -24,13 +24,13 @@ async def main():
     # Runnerは、append_eventを呼び出し、output_keyで指定したキーを使用してstateを更新します。
     query = "こんにちは"
     user_message = Content(parts=[Part(text=query)])
-    print(f"入力: {user_message.parts[0].text}")
+    print(f"入力: {user_message.parts[0].text}")  # type: ignore[index]
     for event in runner.run(user_id=user_id, session_id=session_id, new_message=user_message):
         if event.is_final_response():
-            print(f"エージェント応答: {event.content.parts[0].text}")
+            print(f"エージェント応答: {event.content.parts[0].text}")  # type: ignore[union-attr, index]
 
     updated_session = await session_service.get_session(app_name=app_name, user_id=user_id, session_id=session_id)
-    print(f"エージェント実行後の状態: {updated_session.state}")  # Output: {'last_response': 'xxx'}
+    print(f"エージェント実行後の状態: {updated_session.state}")  # type: ignore[union-attr]  # Output: {'last_response': 'xxx'}
 
 
 if __name__ == "__main__":

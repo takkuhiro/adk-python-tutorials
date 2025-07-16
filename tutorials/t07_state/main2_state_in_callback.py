@@ -9,7 +9,7 @@ from google.adk.runners import Runner
 from google.adk.sessions import InMemorySessionService
 
 
-def before_state_update(callback_context: CallbackContext):
+def before_state_update(callback_context: CallbackContext) -> None:
     count = callback_context.state.get("user_action_count", 0)
     callback_context.state["user_action_count"] = count + 1
 
@@ -27,7 +27,7 @@ root_agent = Agent(
 )
 
 
-async def main():
+async def main() -> None:
     session_service = InMemorySessionService()
     app_name, user_id, session_id = "state_app_manual", "user2", "session2"
 
@@ -39,9 +39,9 @@ async def main():
     user_message = types.Content(parts=[types.Part(text=query)])
     for event in runner.run(user_id=user_id, session_id=session_id, new_message=user_message):
         if event.content:
-            print(event.content.parts[0].text)
+            print(event.content.parts[0].text)  # type: ignore[index]
             updated_session = await session_service.get_session(app_name=app_name, user_id=user_id, session_id=session_id)
-            print(f"エージェント実行後の状態: {updated_session.state}")
+            print(f"エージェント実行後の状態: {updated_session.state}")  # type: ignore[union-attr]
 
 
 if __name__ == "__main__":

@@ -13,11 +13,11 @@ async def save_and_load_image(callback_context: CallbackContext, llm_request: Ll
     last_user_message = ""
     if llm_request.contents and llm_request.contents[-1].role == "user":
         if llm_request.contents[-1].parts:
-            last_user_message = llm_request.contents[-1].parts[0].text
+            last_user_message = llm_request.contents[-1].parts[0].text  # type: ignore[assignment]
     print(f"[Callback] Agentに入力されるメッセージ: {last_user_message}")
 
     # 画像を保存
-    image_bytes = llm_request.contents[-1].parts[1].inline_data.data
+    image_bytes = llm_request.contents[-1].parts[1].inline_data.data  # type: ignore[index, union-attr]
     image_artifact = types.Part(inline_data=types.Blob(mime_type="image/jpeg", data=image_bytes))
     filename = "image.jpeg"
 
@@ -32,12 +32,12 @@ async def save_and_load_image(callback_context: CallbackContext, llm_request: Ll
     # 画像を読み込み
     filename = "image.jpeg"
     try:
-        image_artifact = await callback_context.load_artifact(filename=filename)
+        image_artifact = await callback_context.load_artifact(filename=filename)  # type: ignore[assignment]
         if image_artifact and image_artifact.inline_data:
             print(f"Successfully loaded latest Python artifact '{filename}'.")
             print(f"MIME Type: {image_artifact.inline_data.mime_type}")
             image_bytes = image_artifact.inline_data.data
-            print(f"Image size: {len(image_bytes)} bytes.")
+            print(f"Image size: {len(image_bytes)} bytes.")  # type: ignore[arg-type]
         else:
             print(f"Python artifact '{filename}' not found.")
     except ValueError as e:
@@ -99,7 +99,7 @@ async def main() -> None:
     async for event in runner.run_async(user_id=user_id, session_id=session_id, new_message=content):
         if event.is_final_response():
             if event.content and event.content.parts:
-                final_response_text = event.content.parts[0].text
+                final_response_text = event.content.parts[0].text  # type: ignore[assignment]
             elif event.actions and event.actions.escalate:
                 final_response_text = f"Agent escalated: {event.error_message or 'No specific message.'}"
             break

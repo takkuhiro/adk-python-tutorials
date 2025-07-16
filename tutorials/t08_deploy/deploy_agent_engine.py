@@ -18,7 +18,7 @@ vertexai.init(
 def deploy_agent_engine() -> None:
     adk_app = AdkApp(agent=root_agent, enable_tracing=True)
     remote_app = agent_engines.create(
-        adk_app,
+        adk_app,  # type: ignore[arg-type]
         display_name=root_agent.name,
         # TODO: 以下のrequirementsにAgentが使うパッケージが全て入っているか確認する
         requirements=[
