@@ -79,7 +79,7 @@ ADK（Agent Development Kit）は、Googleが開発したオープンソース�
 - Python 3.8以上
 - pip または uv（パッケージマネージャー）
 
-### インストール方法
+### インストールから実行まで
 
 1. リポジトリのクローン:
 ```bash
@@ -91,6 +91,40 @@ cd adk-python-tutorials
 ```bash
 uv pip install -e .
 ```
+
+3. 仮想環境のアクティベート:
+```bash
+# uvコマンドを使用する場合
+eval "$(uv venv)"
+
+# または従来のvenv形式を使用する場合
+source .venv/bin/activate  # macOSの場合
+
+# 仮想環境を終了する場合
+deactivate
+```
+
+4. 環境変数の設定
+```bash
+cp .env.template .env
+# 環境変数の設定
+source .env
+```
+
+5. 実行
+- Web UIでの実行
+```bash
+cd tutorials
+adk web
+```
+ブラウザでアクセス後、該当するチュートリアルを選択してチャットをする
+
+- Runnerでの実行
+```bash
+cd tutorials/tXX_xxx_xxx
+python main_xxx.py
+```
+
 
 ## 使用方法
 

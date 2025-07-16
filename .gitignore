@@ -20,3 +20,6 @@ local
 
 # unused files
 tutorials/base
+
+# Claude Code
+CLAUDE.md

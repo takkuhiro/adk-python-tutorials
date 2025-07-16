@@ -1,26 +1,33 @@
-# tutorial2_agent_tool
+# t02_agent_tool - Tool Callingの実装
 
-Tool Callingを行うエージェントのサンプルです
+## 概要
+Tool Callingの実装方法を学ぶためのサンプルです。Google検索ツールと短編小説を書くツールを実装し、エージェントがツールを呼び出して機能を拡張する方法を学びます。
 
-### 実行方法
-```
-# venv環境に入る
-source .venv/bin/activate
+## 学習内容
+- `AgentTool`を使ったエージェントのツール化（エージェントを別のエージェントのツールとして使用）
+- `LongRunningFunctionTool`を使った長時間実行関数のツール化
 
-# Web UIから実行
-# NOTE: 事前にコード内のコメントを確認してください。
-# 例えば、agent.pyでは、from .tools import ...を選択する必要があります。
+## 実行方法
+
+### Web UIで実行
+```bash
+# TODO: agent.pyのimport文を修正（from .tools import ...を使用）
 cd tutorials
 adk web
-# 画面からtutorial2_agent_toolを選択する
+```
+起動後にブラウザで`localhost:8080`を開き、ドロップダウンメニューより`t02_agent_tool`を選択する
 
-# ターミナルから実行
-# NOTE: 事前にコード内のコメントを確認してください。
-# 例えば、agent.pyでは、from tools import ...を選択する必要があります。
-cd (root)
+### ターミナルで実行
+```bash
+# .envファイルを設定
 cp .env.template .env
-# .envを自分で用意した値に設定する
+# .envを編集して必要な値を設定
 source .env
-cd tutorials/tutorial2_agent_tool
+
+# agent.pyのimport文を修正（from tools import ...を使用）
+cd tutorials/t02_agent_tool
 python main.py
 ```
+
+## 注意事項
+- 実行方法によってimport文を切り替える必要があります（agent.py内のコメント参照）

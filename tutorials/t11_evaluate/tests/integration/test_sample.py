@@ -3,7 +3,7 @@ from google.adk.evaluation.agent_evaluator import AgentEvaluator
 
 
 @pytest.mark.asyncio
-async def test_with_single_test_file():
+async def test_with_single_test_file() -> None:
     """evalsetファイルを使ってエージェントを評価する"""
     await AgentEvaluator.evaluate(
         # NOTE: より階層の深いエージェントを評価対象に指定する場合

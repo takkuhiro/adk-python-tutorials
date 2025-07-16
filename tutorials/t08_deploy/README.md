@@ -1,20 +1,38 @@
-# tutorial7_deploy
+# t08_deploy - エージェントのデプロイ
 
-ADKで作成したエージェントをデプロイします
+## 概要
+ADKで作成したエージェントのデプロイ方法を学ぶためのチュートリアルです。
 
+以下へのデプロイ方法が提供されています。
 - Agent Engine
 - Cloud Run
 - GKE
 
+今回はAgent Engineへのデプロイを扱います
+
 cf. https://google.github.io/adk-docs/deploy
 
-### Agent Engineへのデプロイ
+## 学習内容
+- `AdkApp`を使用したエージェントのパッケージング
+- `agent_engines.create()`によるAgent Engineへのデプロイ
+
+## Agent Engineへのデプロイ
+
+### 環境変数の設定
+以下の環境変数が自分のものに設定されていることを確認する
+```bash
+GOOGLE_CLOUD_PROJECT="your-project-id"
+GOOGLE_CLOUD_LOCATION="us-central1"
+GOOGLE_CLOUD_STAGING_BUCKET="your-staging-bucket"
 ```
-cd tutorial7_deploy
+
+### デプロイの実行
+```bash
+cd tutorials/t08_deploy
 python deploy_agent_engine.py
 ```
 
-すると以下の表示が出力される
+出力ログの例
 ```
 ~/adk-python-tutorials/tutorials/tutorial7_deploy $ python deploy_agent_engine.py
 Identified the following requirements: {'pydantic': '2.11.7', 'google-cloud-aiplatform': '1.101.0', 'cloudpickle': '3.1.1'}
@@ -37,12 +55,14 @@ agent_engine = vertexai.agent_engines.get('projects/xxx/locations/us-central1/re
 Created remote agent: projects/xxx/locations/us-central1/reasoningEngines/xxx
 ```
 
-- デプロイには最大10分ほど時間がかかる（長すぎるとエラーを疑う）
-- デプロイの進捗は上記のように出力されるログエクスプローラーのリンク(https://console.cloud.google.com/logs/query?project=YOUR-PROJECT) で確認可能
-- デプロイ後のremoteアクセスのためのID（上記の場合は`projects/xxx/locations/us-central1/reasoningEngines/xxx`）をメモしておき、リクエスト時に利用する
-
-### Agent Engineの利用例
-1. 上記で入手したIDを`request_agent_engine.py`のAGENT_ENGINE_IDに入力する
-1. `python request_agent_engine.py`
+デプロイには最大10分ほどかかります。完了すると以下のような形式のリソース名が表示されます：
+```
+projects/xxx/locations/us-central1/reasoningEngines/xxx
+```
 
 
+### デプロイしたエージェントの利用
+```bash
+# request_agent_engine.pyのAGENT_ENGINE_IDに上記のリソース名を設定
+python request_agent_engine.py
+```

@@ -19,11 +19,11 @@ AGENT_ENGINE_ID = "REPLACE_YOUR_AGENT_ID: e.g. projects/xxx/locations/us-central
 def list_session_ids() -> None:
     remote_app = agent_engines.get(AGENT_ENGINE_ID)
 
-    _ = remote_app.create_session(user_id="user_id", session_id="session_id_a")
-    _ = remote_app.create_session(user_id="user_id", session_id="session_id_b")
-    _ = remote_app.create_session(user_id="user_id", session_id="session_id_c")
+    _ = remote_app.create_session(user_id="user_id", session_id="session_id_a")  # type: ignore[attr-defined]
+    _ = remote_app.create_session(user_id="user_id", session_id="session_id_b")  # type: ignore[attr-defined]
+    _ = remote_app.create_session(user_id="user_id", session_id="session_id_c")  # type: ignore[attr-defined]
 
-    sessions = remote_app.list_sessions(user_id="user_id")
+    sessions = remote_app.list_sessions(user_id="user_id")  # type: ignore[attr-defined]
     for session in sessions["sessions"]:
         print(session["id"])
 
@@ -33,7 +33,7 @@ def chat() -> None:
     remote_app = agent_engines.get(AGENT_ENGINE_ID)
 
     print("2. Getting session...")
-    remote_session = remote_app.create_session(user_id="user_id")
+    remote_session = remote_app.create_session(user_id="user_id")  # type: ignore[attr-defined]
 
     session_id = remote_session["id"]
 
@@ -44,7 +44,7 @@ def chat() -> None:
         if message == "break":
             break
 
-        for event in remote_app.stream_query(user_id="user_id", session_id=session_id, message=message):
+        for event in remote_app.stream_query(user_id="user_id", session_id=session_id, message=message):  # type: ignore[attr-defined]
             print("----- Event -----")
             print(event)
             print("-----------------")
@@ -57,14 +57,14 @@ def chat() -> None:
 
 def delete_remote_session(session_id: str) -> None:
     remote_app = agent_engines.get(AGENT_ENGINE_ID)
-    remote_app.delete_session(user_id="user_id", session_id=session_id)
+    remote_app.delete_session(user_id="user_id", session_id=session_id)  # type: ignore[attr-defined]
 
 
 def delete_remote_all_sessions() -> None:
     remote_app = agent_engines.get(AGENT_ENGINE_ID)
-    sessions = remote_app.list_sessions(user_id="user_id")
+    sessions = remote_app.list_sessions(user_id="user_id")  # type: ignore[attr-defined]
     for session in sessions["sessions"]:
-        remote_app.delete_session(user_id="user_id", session_id=session["id"])
+        remote_app.delete_session(user_id="user_id", session_id=session["id"])  # type: ignore[attr-defined]
 
 
 def delete_remote_agent() -> None:

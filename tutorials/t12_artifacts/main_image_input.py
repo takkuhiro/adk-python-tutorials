@@ -14,7 +14,9 @@ runner = Runner(
 )
 
 
-async def main_image_input(query: str, image_bytes: bytes, runner: Runner, app_name: str, user_id: str, session_id: str) -> None:
+async def main_image_input(
+    query: str, image_bytes: bytes, runner: Runner, app_name: str, user_id: str, session_id: str
+) -> None:
     print(f"\n>>> User Query: {query}")
     _ = await session_service.create_session(app_name=app_name, user_id=user_id, session_id=session_id)
 
@@ -32,7 +34,7 @@ async def main_image_input(query: str, image_bytes: bytes, runner: Runner, app_n
     async for event in runner.run_async(user_id=user_id, session_id=session_id, new_message=content):
         if event.is_final_response():
             if event.content and event.content.parts:
-                final_response_text = event.content.parts[0].text # type: ignore
+                final_response_text = event.content.parts[0].text  # type: ignore
             elif event.actions and event.actions.escalate:
                 final_response_text = f"Agent escalated: {event.error_message or 'No specific message.'}"
             break

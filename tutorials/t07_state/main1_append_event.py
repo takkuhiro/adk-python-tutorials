@@ -5,7 +5,7 @@ from google.adk.events import Event, EventActions
 from google.adk.sessions import InMemorySessionService
 
 
-async def main():
+async def main() -> None:
     session_service = InMemorySessionService()
     app_name, user_id, session_id = "state_app_manual", "user2", "session2"
 
@@ -42,7 +42,7 @@ async def main():
 
     # 状態が更新されたことを確認
     updated_session = await session_service.get_session(app_name=app_name, user_id=user_id, session_id=session_id)
-    print(f"状態更新後: {updated_session.state}")
+    print(f"状態更新後: {updated_session.state}")  # type: ignore[union-attr]
     # Output: 状態更新後: {'user:login_count': 1, 'task_status': 'active', 'user:last_login_ts': 1752225547.1642141}
     # NOTE: 'temp:validation_needed' は状態更新したが存在しない。これは一次的な利用後にすぐ破棄されるため。Callback時に有用。
 

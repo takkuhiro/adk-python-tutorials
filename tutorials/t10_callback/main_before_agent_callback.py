@@ -47,7 +47,7 @@ root_agent = Agent(
 )
 
 
-async def main():
+async def main() -> None:
     app_name = "before_agent_demo"
     user_id = "test_user"
     session_id_run = "session_will_run"
@@ -81,9 +81,9 @@ async def main():
         user_id=user_id, session_id=session_id_run, new_message=types.Content(role="user", parts=[types.Part(text=query)])
     ):
         if event.is_final_response() and event.content:
-            print(f"Final Output: [{event.author}] {event.content.parts[0].text.strip()}")
-        elif event.is_error():
-            print(f"Error Event: {event.error_details}")
+            print(f"Final Output: [{event.author}] {event.content.parts[0].text.strip()}")  # type: ignore[index, union-attr]
+        elif event.is_error():  # type: ignore[attr-defined]
+            print(f"Error Event: {event.error_details}")  # type: ignore[attr-defined]
 
     print(
         "\n" + "=" * 20 + f" シナリオ 2: Running Agent on Session '{session_id_skip}' (エージェントが実行されない) " + "=" * 20
@@ -92,9 +92,9 @@ async def main():
         user_id=user_id, session_id=session_id_skip, new_message=types.Content(role="user", parts=[types.Part(text=query)])
     ):
         if event.is_final_response() and event.content:
-            print(f"Final Output: [{event.author}] {event.content.parts[0].text.strip()}")
-        elif event.is_error():
-            print(f"Error Event: {event.error_details}")
+            print(f"Final Output: [{event.author}] {event.content.parts[0].text.strip()}")  # type: ignore[index, union-attr]
+        elif event.is_error():  # type: ignore[attr-defined]
+            print(f"Error Event: {event.error_details}")  # type: ignore[attr-defined]
 
 
 if __name__ == "__main__":

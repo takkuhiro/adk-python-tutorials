@@ -1,27 +1,30 @@
-# tutorial9_artifacts
+# t12_artifacts - バイナリデータの管理
 
-ADKのArtifactsを試します
+## 概要
+ADKのArtifacts機能の使用方法を学ぶためのチュートリアルです。バイナリデータ（画像、ファイル、音声など）の管理とLLMでの利用方法を実装します。
 
-Artifactsを利用することで、バイナリデータがバージョン管理された状態で利用できます
+## 学習内容
+- `InMemoryArtifactService`を使用したバイナリデータの管理
+- `before_model_callback`でのArtifactの保存と読み込み
+- 画像データのLLMへの入力方法
 
-これにより、テキストだけでなく、ファイル、画像、音声などをLLMが扱うことができます
+## 実行方法
 
-### 実行方法
-画像を入力として直接バイナリデータで与える
-```
-cd tutorial10_artifacts
+### 1. 画像を直接入力として与える
+```bash
+cd tutorials/t12_artifacts
 python main_image_input.py
 ```
 
-次にArtifactServiceを使って、バイナリデータをArtifactServiceに保存・呼び出しできることを確認する
-```
-cd tutorial10_artifacts
+### 2. ArtifactServiceを使った保存・読み込み
+```bash
+cd tutorials/t12_artifacts
 python main_artifacts.py
 ```
 
-### ArtifactServiceの使い方
-ArtifactServiceはCallback（特に`before_model_callback`で呼び出す。`before_agent_callback`ではない。）で呼び出すことに注意
-
-`before_model_callback`では`llm_request`を引数として受け取れるので、Artifact Serviceから呼び出したバイナリデータはここで`llm_request`を編集して直接挿入する
-
-また、LLMが生成したファイルは`after_model_callback`でArtifact Serviceに保存すれば良い
+## ArtifactServiceの使い方
+- `before_model_callback`で呼び出す（`before_agent_callback`ではない）
+- `callback_context.save_artifact()`でバイナリデータを保存
+- `callback_context.load_artifact()`で保存したデータを読み込み
+- LLMへの入力は`llm_request`を編集して直接挿入
+- LLMが生成したファイルは`after_model_callback`でArtifact Serviceに保存する
