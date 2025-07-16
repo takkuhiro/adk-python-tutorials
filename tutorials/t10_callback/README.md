@@ -5,6 +5,8 @@ ADKのCallback機能の使用方法を学ぶためのチュートリアルです
 
 Callbackにより、エージェントの実行前後での処理を追加することができます。
 
+cf. 公式ドキュメント: [Callbacks](https://google.github.io/adk-docs/callbacks/)
+
 ## 学習内容
 - `before_agent_callback`を使用したエージェント実行前の制御
 - `CallbackContext`を使用した状態アクセスとエージェント実行制御

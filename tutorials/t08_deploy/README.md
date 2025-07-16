@@ -10,7 +10,7 @@ ADKで作成したエージェントのデプロイ方法を学ぶためのチ�
 
 今回はAgent Engineへのデプロイを扱います
 
-cf. https://google.github.io/adk-docs/deploy
+cf. 公式ドキュメント: [Deploy](https://google.github.io/adk-docs/deploy/)
 
 ## 学習内容
 - `AdkApp`を使用したエージェントのパッケージング

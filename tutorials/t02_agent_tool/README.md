@@ -3,6 +3,8 @@
 ## 概要
 Tool Callingの実装方法を学ぶためのサンプルです。Google検索ツールと短編小説を書くツールを実装し、エージェントがツールを呼び出して機能を拡張する方法を学びます。
 
+cf. 公式ドキュメント: [Function Tools](https://google.github.io/adk-docs/tools/function-tools/)
+
 ## 学習内容
 - `AgentTool`を使ったエージェントのツール化（エージェントを別のエージェントのツールとして使用）
 - `LongRunningFunctionTool`を使った長時間実行関数のツール化

@@ -3,7 +3,7 @@
 ## 概要
 MCPサーバー（ファイルシステム）と連携するエージェントの実装例です。ファイルシステムへのアクセスと操作方法を実装します。
 
-cf. https://google.github.io/adk-docs/tools/mcp-tools
+cf. 公式ドキュメント: [MCP tools](https://google.github.io/adk-docs/tools/mcp-tools/)
 
 ## 学習内容
 - `MCPToolset`を使用したMCP（Model Context Protocol）サーバーとの統合

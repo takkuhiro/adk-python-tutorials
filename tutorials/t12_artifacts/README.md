@@ -3,6 +3,8 @@
 ## 概要
 ADKのArtifacts機能の使用方法を学ぶためのチュートリアルです。バイナリデータ（画像、ファイル、音声など）の管理とLLMでの利用方法を実装します。
 
+cf. 公式ドキュメント: [Artifacts](https://google.github.io/adk-docs/artifacts/)
+
 ## 学習内容
 - `InMemoryArtifactService`を使用したバイナリデータの管理
 - `before_model_callback`でのArtifactの保存と読み込み
